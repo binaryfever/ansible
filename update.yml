@@ -1,11 +1,12 @@
 ---
 
-- hosts: all
+- hosts: all 
   become: true
-  tasks:
+  pre_tasks:
 
-  - name: update packages with Fedora
-    package:
+  - name: install updates (Fedora) 
+    dnf:
       name: '*'
       state: latest
       update_cache: yes
+    when: ansible_distribution == "Fedora"
